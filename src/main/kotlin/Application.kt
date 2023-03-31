@@ -3,6 +3,7 @@ import freemarker.core.HTMLOutputFormat
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.engine.cio.CIO
+import io.ktor.client.plugins.HttpTimeout
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.request.get
 import io.ktor.http.HttpStatusCode
@@ -28,6 +29,9 @@ private const val CONVERT_API = "https://api.fastforex.io/convert?api_key=c2ebaf
 private val httpClient = HttpClient(CIO) {
     install(ContentNegotiation) {
         json()
+    }
+    install(HttpTimeout) {
+        requestTimeoutMillis = 3000
     }
 }
 
