@@ -85,7 +85,7 @@ fun Application.configureRouting() {
 
                 call.respond(FreeMarkerContent("converted.ftl", mapOf("result" to result)))
 
-            }catch (e:Error) {
+            }catch (e:Throwable) {
                 call.respond(FreeMarkerContent("error.ftl", mapOf("error" to Error(title = "Conversion failed",
                     description=e.message?:"Unknown error"))))
             }
