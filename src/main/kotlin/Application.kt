@@ -35,9 +35,7 @@ private val httpClient = HttpClient(CIO) {
     }
 }
 
-
 fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
-
 
 fun Application.module() {
     configureRouting()
