@@ -17,6 +17,7 @@ repositories {
 }
 
 dependencies {
+    implementation("io.ktor:ktor-http:$ktorVersion")
     implementation("io.ktor:ktor-server-core:$ktorVersion")
     implementation("io.ktor:ktor-server-netty:$ktorVersion")
     implementation("io.ktor:ktor-server-freemarker:$ktorVersion")

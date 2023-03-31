@@ -22,7 +22,7 @@
         <br><br>
 
         <label for="amount">Amount:</label>
-        <input id="amount" name="amount" type="number" step="0.01"/>
+        <input id="amount" name="amount" type="number" step="0.01" min="0.1"/>
 
         <input type="submit" value="Convert it!"/>
     </form>

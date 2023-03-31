@@ -58,7 +58,11 @@ fun Application.configureRouting() {
                 val from = formParameters.getOrFail("from")
                 val to = formParameters.getOrFail("to")
                 val amount = formParameters.getOrFail("amount")
+                val bdAmount = BigDecimal(amount)
 
+                if (bdAmount <= BigDecimal.ZERO) {
+                    throw Error("Amount must be positive!")
+                }
 
                 val response = httpClient.get(String.format("$CONVERT_API&from=%s&to=%s&amount=%s", from, to, amount))
 
@@ -68,18 +72,18 @@ fun Application.configureRouting() {
 
                 val res = response.body<JsonObject>()
 
-                val convertedAmount = BigDecimal((res["result"] as JsonObject)["$to"].toString())
+                val convertedAmount = BigDecimal((res["result"] as JsonObject)[to].toString())
 
                 val result = ConversionResult(
                     from = from,
                     to = to,
-                    fromAmount = amount.toBigDecimal(),
+                    fromAmount = bdAmount,
                     toAmount = convertedAmount
                 )
 
                 call.respond(FreeMarkerContent("converted.ftl", mapOf("result" to result)))
 
-            }catch (e:Exception) {
+            }catch (e:Error) {
                 call.respond(FreeMarkerContent("error.ftl", mapOf("error" to Error(title = "Conversion failed",
                     description=e.message?:"Unknown error"))))
             }

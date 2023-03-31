@@ -2,8 +2,8 @@
 <#import "_layout.ftl" as layout />
 <@layout.header>
 Some error occurred:
-    <br>
-    <b>${error.title}</b>
-    <br>
-    ${error.description}
+<br>
+<b>${error.title}</b>
+<br>
+${error.description}
 </@layout.header>
