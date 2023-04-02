@@ -51,7 +51,7 @@ data class ConverterCurrency(
     val name: String?=null,
 )
 
-const val RUB_RATE_API = "http://www.cbr.ru/scripts/XML_daily.asp?date_req=01/04/2023"
+const val RUB_RATE_API = "http://www.cbr.ru/scripts/XML_daily.asp" // for the current date
 val currencyHttpClient = HttpClient(CIO) {
     install(ContentNegotiation) {
         xml(format = XML())
